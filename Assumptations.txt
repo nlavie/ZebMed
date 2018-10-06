@@ -6,3 +6,5 @@
 2) Time consuming:
 	- Reading from mounted data is possible (not too big)
 	- The given API Calls returns an answer in reasonable time
+3) Given API's results were invented by me
+4) Every one of the API's required is isolated and represents single API call

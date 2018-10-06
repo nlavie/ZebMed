@@ -12,16 +12,7 @@ namespace ZebMed
     {
         static void Main(string[] args)
         {
-            API nfs = new API("b2", "a", "WEB");
 
-            string t = nfs.GetFileByFileName("b211.txt");
-
-            List<string> tt = nfs.GetSeriesBySeriesId("b21");
-
-            Dictionary<string,string[]> ttt = nfs.GetAllSeriesForStudy("b2");
-
-
-            
         }
     }
 }

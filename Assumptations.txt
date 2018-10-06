@@ -1,0 +1,8 @@
+1) Uniquness of all the below
+	- file name
+	- series Id
+	- study Id
+	- data Id
+2) Time consuming:
+	- Reading from mounted data is possible (not too big)
+	- The given API Calls returns an answer in reasonable time

@@ -24,16 +24,25 @@ namespace ZebMed
 
         public  Dictionary<string, string[]> GetAllSeriesForStudy(string studyId)
         {
+            if (this.dataRetrieval == null || studyId == null)
+                return null;
+
             return dataRetrieval.GetAllSeriesForStudy(studyId);
         }
 
         public List<string> GetSeriesBySeriesId(string seriesId)
         {
+            if (this.dataRetrieval == null || seriesId == null)
+                return null;
+
             return dataRetrieval.GetSeriesBySeriesId(seriesId);
         }
 
         public string GetFileByFileName(string fileName)
         {
+            if (this.dataRetrieval == null || fileName == null)
+                return null;
+
             return dataRetrieval.GetFileByFileName(fileName);
         }
     }

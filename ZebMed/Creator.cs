@@ -16,7 +16,7 @@ namespace ZebMed
             {
                 return new WebInterfaceRetrieval(studyId, dataSource);
             }
-            else
+            else if (connectionType.Equals("NFS"))
             {
                 if (dataSource.Equals("test"))
                 {
@@ -27,6 +27,8 @@ namespace ZebMed
                     return new NFSRetrieval(ConfigurationSettings.AppSettings["dataPath"]);
                 }
             }
+
+            return null;
         }
 
         private string GetTestingDirectory()

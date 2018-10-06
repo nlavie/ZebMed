@@ -13,6 +13,20 @@ namespace ZebMed.Tests
     public class APITests
     {
         private string testDataPath = Environment.CurrentDirectory+"\\Data";
+
+        [TestMethod()]
+        public void CreatingAPIWithWrongConnectionType_FAIL()
+        {
+            // arrange
+
+            API api = new API("b2", "test", "zebra");
+
+            Dictionary<string, string[]> actual = api.GetAllSeriesForStudy("b2");
+
+            // assert
+            Assert.IsNull(actual);
+        }
+
         /*
          * 
          * NFS - Positive Tests
@@ -23,7 +37,7 @@ namespace ZebMed.Tests
         {
             // arrange
 
-            API api = new API("b2", "test", "nfs");
+            API api = new API("b2", "test", "NFS");
             Dictionary<string, string[]> expected = new Dictionary<string, string[]>();
             expected.Add("series_b21",new string[] { this.testDataPath + "\\data_b\\study_b2\\series_b21\\b211.txt", this.testDataPath + "\\data_b\\study_b2\\series_b21\\b212.txt" });
             expected.Add("series_b22", new string[] { this.testDataPath + "\\data_b\\study_b2\\series_b22\\b221.txt", this.testDataPath + "\\data_b\\study_b2\\series_b22\\b222.txt" });
@@ -43,7 +57,7 @@ namespace ZebMed.Tests
         public void GetSeriesBySeriesIdTest()
         {
             // arrange
-            API api = new API("b2", "test", "nfs");
+            API api = new API("b2", "test", "NFS");
             List<string> expected = new List<string>()
             {
                 this.testDataPath+ "\\data_b\\study_b2\\series_b21\\b211.txt",
@@ -68,7 +82,7 @@ namespace ZebMed.Tests
         public void GetFileByFileNameTest()
         {
             // arrange
-            API api = new API("b2", "test", "nfs");
+            API api = new API("b2", "test", "NFS");
             string expected = this.testDataPath + "\\data_b\\study_b2\\series_b21\\b212.txt";
             // act
 
@@ -90,7 +104,7 @@ namespace ZebMed.Tests
         {
             // arrange
 
-            API api = new API("b2", "test", "nfs");
+            API api = new API("b2", "test", "NFS");
             // act
 
             Dictionary<string, string[]> actual = api.GetAllSeriesForStudy(null);
@@ -104,7 +118,7 @@ namespace ZebMed.Tests
         public void GetSeriesBySeriesIdTest_FAIL_NULL_SERIES_ID()
         {
             // arrange
-            API api = new API("b2", "test", "nfs");
+            API api = new API("b2", "test", "NFS");
             // act
 
             List<string> actual = api.GetSeriesBySeriesId(null);
@@ -118,7 +132,7 @@ namespace ZebMed.Tests
         public void GetFileByFileNameTest_FAIL_NULL_FILENAME()
         {
             // arrange
-            API api = new API("b2", "test", "nfs");
+            API api = new API("b2", "test", "NFS");
             // act
 
             string actual = api.GetFileByFileName(null);
@@ -133,7 +147,7 @@ namespace ZebMed.Tests
         {
             // arrange
 
-            API api = new API("b2", "test", "nfs");
+            API api = new API("b2", "test", "NFS");
             // act
 
             Dictionary<string, string[]> actual = api.GetAllSeriesForStudy("zebra");
@@ -147,7 +161,7 @@ namespace ZebMed.Tests
         public void GetSeriesBySeriesIdTest_FAIL_NOT_EXISTS_SERIES_ID()
         {
             // arrange
-            API api = new API("b2", "test", "nfs");
+            API api = new API("b2", "test", "NFS");
             // act
 
             List<string> actual = api.GetSeriesBySeriesId("zebra");
@@ -161,7 +175,7 @@ namespace ZebMed.Tests
         public void GetFileByFileNameTest_FAIL_NOT_EXISTS_FILENAME()
         {
             // arrange
-            API api = new API("b2", "test", "nfs");
+            API api = new API("b2", "test", "NFS");
             // act
 
             string actual = api.GetFileByFileName("zebra");

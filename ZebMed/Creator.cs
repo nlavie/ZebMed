@@ -10,13 +10,13 @@ namespace ZebMed
 {
     public class Creator
     {
-        public IDataRetrieval Create(string studyId, string dataSource, string connectionType)
+        public IDataRetrieval Create(string studyId, string dataSource, Method connectionType)
         {
-            if (connectionType.Equals("WEB"))
+            if (connectionType.Equals(Method.Web))
             {
                 return new WebInterfaceRetrieval(studyId, dataSource);
             }
-            else if (connectionType.Equals("NFS"))
+            else if (connectionType.Equals(Method.NFS))
             {
                 if (dataSource.Equals("test"))
                 {

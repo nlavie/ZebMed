@@ -33,6 +33,10 @@ namespace ZebMed
         private string getListOfSeriesURI { get; set; }
         private string getListOfScansURI { get; set; }
         private string getScanFileURI { get; set; }
+        private string studyIdInterfaceParameter = "study_id";
+        private string seriesIdInterfaceParameter = "series_id";
+        private string fileNameInterfaceParameter = "file_name";
+        private string dataSourceInterfaceParameter = "data_source";
 
         public WebInterfaceRetrieval(string studyId, string dataSource)
         {
@@ -67,10 +71,10 @@ namespace ZebMed
         {
             var client = new HttpClient();
             var pairs = new List<KeyValuePair<string, string>>();
-            pairs.Add(new KeyValuePair<string, string>("data_source", this.dataSource));
-            pairs.Add(new KeyValuePair<string, string>("study_id", studyId));
-            pairs.Add(new KeyValuePair<string, string>("series_id", seriesId));
-            pairs.Add(new KeyValuePair<string, string>("file_name", fileName));
+            pairs.Add(new KeyValuePair<string, string>(this.dataSourceInterfaceParameter, this.dataSource));
+            pairs.Add(new KeyValuePair<string, string>(this.studyIdInterfaceParameter, studyId));
+            pairs.Add(new KeyValuePair<string, string>(this.seriesIdInterfaceParameter, seriesId));
+            pairs.Add(new KeyValuePair<string, string>(this.fileNameInterfaceParameter, fileName));
 
             HttpContent requestBody = new StringContent(MongoDB.Bson.BsonExtensionMethods.ToJson(pairs));
             requestBody.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -82,7 +86,7 @@ namespace ZebMed
 
                 AnswerGetFileByFileName answer = Newtonsoft.Json.JsonConvert.DeserializeObject<AnswerGetFileByFileName>(result);
 
-                if (answer == null || answer.result == null)
+                if (answer == null)
                     return null;
 
                 return answer.result;
@@ -111,9 +115,9 @@ namespace ZebMed
         {
             var client = new HttpClient();
             var pairs = new List<KeyValuePair<string, string>>();
-            pairs.Add(new KeyValuePair<string, string>("data_source", this.dataSource));
-            pairs.Add(new KeyValuePair<string, string>("study_id", studyId));
-            pairs.Add(new KeyValuePair<string, string>("series_id", seriesId));
+            pairs.Add(new KeyValuePair<string, string>(this.dataSourceInterfaceParameter, this.dataSource));
+            pairs.Add(new KeyValuePair<string, string>(this.studyIdInterfaceParameter, studyId));
+            pairs.Add(new KeyValuePair<string, string>(this.seriesIdInterfaceParameter, seriesId));
 
             HttpContent requestBody = new StringContent(MongoDB.Bson.BsonExtensionMethods.ToJson(pairs));
             requestBody.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -125,7 +129,7 @@ namespace ZebMed
 
                 AnswerGetSeriesBySeriesId answer = Newtonsoft.Json.JsonConvert.DeserializeObject<AnswerGetSeriesBySeriesId>(result);
 
-                if (answer == null || answer.result == null)
+                if (answer == null)
                     return null;
 
                 return answer.result.ToList<string>();
@@ -140,8 +144,8 @@ namespace ZebMed
         {
             var client = new HttpClient();
             var pairs = new List<KeyValuePair<string, string>>();
-            pairs.Add(new KeyValuePair<string, string>("data_source", this.dataSource));
-            pairs.Add(new KeyValuePair<string, string>("study_id", studyId));
+            pairs.Add(new KeyValuePair<string, string>(this.dataSourceInterfaceParameter, this.dataSource));
+            pairs.Add(new KeyValuePair<string, string>(this.studyIdInterfaceParameter, studyId));
 
             HttpContent requestBody = new StringContent(MongoDB.Bson.BsonExtensionMethods.ToJson(pairs));
             requestBody.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -153,7 +157,7 @@ namespace ZebMed
 
                 AnswerAllSeriesForStudy answer = Newtonsoft.Json.JsonConvert.DeserializeObject<AnswerAllSeriesForStudy>(result);
 
-                if (answer == null || answer.result == null)
+                if (answer == null)
                     return null;
 
                 return answer.result;

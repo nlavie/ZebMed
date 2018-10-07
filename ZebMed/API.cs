@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace ZebMed
 {
+    public enum Method { Web, NFS };
+
     public class API
     {
+        
         public string studyId { get; set; }
         public string dataSource { get; set; }
-        public string connectionType { get; set; }
+        public Method connectionType { get; set; }
         public IDataRetrieval dataRetrieval { get; set; }
 
-        public API(string studyId, string dataSource, string connectionType)
+        public API(string studyId, string dataSource, Method connectionType)
         {
             this.connectionType = connectionType;
             this.dataSource = dataSource;

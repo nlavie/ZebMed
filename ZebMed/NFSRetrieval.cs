@@ -49,13 +49,9 @@ namespace ZebMed
             if (string.IsNullOrEmpty(studyId))
                 return null;
 
-            Dictionary<string, string[]> result = new Dictionary<string, string[]>();
-
             List<string> seriesDirectories = GetAllSeriesDirectoriesForStudy(studyId);
 
-            result = GetFilesForStudyPerSeries(seriesDirectories);
-
-            return result;
+            return GetFilesForStudyPerSeries(seriesDirectories);
         }
 
         public List<string> GetSeriesBySeriesId(string seriesId)

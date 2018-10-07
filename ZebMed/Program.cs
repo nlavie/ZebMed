@@ -12,7 +12,16 @@ namespace ZebMed
     {
         static void Main(string[] args)
         {
-
+            /*
+             * Use example code
+             * 
+            API api = new API("b2", "a", Method.NFS);
+            string fileNameResult = api.GetFileByFileName("b211.txt");
+            List<string> seriesResult = api.GetSeriesBySeriesId("b21");
+            Dictionary<string, string[]> allSeriesForStudyResult = api.GetAllSeriesForStudy("b2");
+            *
+            * 
+            */
         }
     }
 }
